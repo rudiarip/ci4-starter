@@ -81,7 +81,7 @@
 
 <?php
 if (isset($script)) {
-    $this->load->view($script);
+    echo $this->include($script);
 }
 ?>
 </body>
