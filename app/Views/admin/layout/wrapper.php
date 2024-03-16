@@ -1,14 +1,8 @@
-<!-- <= $this->extend('admin/layout/header') ?>
-<= $this->extend('admin/layout/navigasi') ?>
-
-<php if (isset($isi)) {
-    $this->extend($isi);
+<?= $this->include('admin/layout/header'); ?>
+<?= $this->include('admin/layout/navigasi'); ?>
+<?php
+if (isset($isi)) {
+    echo $this->include($isi);
 }
 ?>
-
-<= $this->extend('admin/layout/footer') ?> -->
-
-<?= $this->renderSection('header') ?>
-<?= $this->renderSection('navigasi') ?>
-
-<?= $this->renderSection('footer') ?>
+<?= $this->include('admin/layout/footer'); ?>

@@ -1,5 +1,3 @@
-<?= $this->section('footer') ?>
-
 <!-- / Content -->
 
 <!-- Footer -->
@@ -89,5 +87,3 @@ if (isset($script)) {
 </body>
 
 </html>
-
-<?= $this->endSection() ?>

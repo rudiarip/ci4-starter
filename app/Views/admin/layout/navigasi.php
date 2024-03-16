@@ -1,5 +1,3 @@
-<?= $this->section('navigasi') ?>
-
 <!-- Menu -->
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
@@ -19,7 +17,7 @@
     <ul class="menu-inner py-1">
 
         <!-- Dashboard -->
-        <li>
+        <li class="menu-item">
             <a href="<?= base_url('admin') ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
@@ -30,7 +28,7 @@
             <span class="menu-header-text">Halaman</span>
         </li>
 
-        <li>
+        <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div data-i18n="Master Data">Master Data</div>
@@ -53,13 +51,13 @@
             <span class="menu-header-text">Setting Aplikasi</span>
         </li>
 
-        <li>
+        <li class="menu-item">
             <a href="<?= base_url('setting') ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-cog"></i>
                 <div data-i18n="Boxicons">Setting Website</div>
             </a>
         </li>
-        <li>
+        <li class="menu-item">
             <a href="<?= base_url('usermanajemen') ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user"></i>
                 <div data-i18n="Boxicons">User Manajemen</div>
@@ -128,7 +126,7 @@
                         </div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li>
+                        <li class="menu-item">
                             <a class="dropdown-item" href="#">
                                 <div class="d-flex">
                                     <div class="flex-shrink-0 me-3">
@@ -147,7 +145,7 @@
                             <div class="dropdown-divider"></div>
                         </li>
 
-                        <li>
+                        <li class="menu-item">
                             <a class="dropdown-item" href="<?= base_url('setting-akun') ?>">
                                 <i class="bx bx-cog me-2"></i>
                                 <span class="align-middle">Setting Akun</span>
@@ -170,5 +168,3 @@
     <!-- / Navbar -->
 
     <!-- Content wrapper -->
-
-    <?= $this->endSection() ?>
