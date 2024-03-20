@@ -4,22 +4,22 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
-use App\Models\UserGroupModel;
+use App\Models\UserModel;
 
-class UserGroup extends BaseController
+class User extends BaseController
 {
     public function __construct()
     {
-        $this->m_user = new UserGroupModel();
+        $this->m_user = new UserModel();
     }
 
     public function index()
     {
         $data = [
             'judul'     => 'Setting',
-            'subjudul'  => 'User Group',
-            'isi'       => 'admin/page/v_userGroup',
-            'script'    => 'admin/script/script_userGroup'
+            'subjudul'  => 'User Manajemen',
+            'isi'       => 'admin/page/v_user',
+            'script'    => 'admin/script/script_user'
         ];
 
         return view('admin/layout/wrapper', $data);
@@ -45,9 +45,10 @@ class UserGroup extends BaseController
             $aksi .= ' <a href="javascript:;" class="btn btn-danger btn-sm bhapus" data="' . $r['id'] . '"><i class="fa fa-trash nav-icon"></i></a>';
 
             $data[$key][]    = $no++;
-            $data[$key][]    = $r['nama'];
-            $data[$key][]    = $r['keterangan'];
-            $data[$key][]    = date('d F Y', strtotime($r['created_at']));
+            $data[$key][]    = $r['username'];
+            $data[$key][]    = $r['email'];
+            $data[$key][]    = ($r['last_login']) == NULL ? 'Belum Pernah Login' : $r['last_login'];
+            $data[$key][]    = $r['status'];
             $data[$key][]     = $aksi;
 
         endforeach;
@@ -65,17 +66,56 @@ class UserGroup extends BaseController
 
     public function store()
     {
-        $nama       = $this->request->getPost("nama");
-        $keterangan = $this->request->getPost("keterangan");
+        $username   = $this->request->getPost("username");
+        $email      = $this->request->getPost("email");
+        $password   = $this->request->getPost("password1");
+        $password2  = $this->request->getPost("password2");
+        $user_group = $this->request->getPost("user_group");
+        $status     = $this->request->getPost("status");
+
+        ### Cek sudah ada username yang terdaftar atau belum ###
+        $param_cek = [
+            'table' => 'set_user',
+            'where' => [
+                'username' => $username
+            ]
+        ];
+        $cek = $this->m_user->select_with_param($param_cek);
+
+        if ($cek) {
+            $return = [
+                'status' => FALSE,
+                'message' => 'Username sudah terdaftar'
+            ];
+
+            echo json_encode($return);
+            return;
+        }
+        ############# Cek passwordnya sama atau tidak ##############
+
+        if ($password != $password2) {
+            $return = [
+                'status' => FALSE,
+                'message' => 'Password Tidak Cocok'
+            ];
+
+            echo json_encode($return);
+            return;
+        }
+        ###########################################################
 
         $param = [
-            'table' => 'set_group',
+            'table' => 'set_user',
             'data' => [
-                'nama'       => $nama,
-                'keterangan' => $keterangan,
-                "created_at" => date('Y-m-d H:i:s'),
+                'username'      => $username,
+                'id_group'      => $user_group,
+                'email'         => $email,
+                'password'      => password_hash($password, PASSWORD_DEFAULT),
+                'status'        => $status,
+                'created_at'    => date('Y-m-d H:i:s'),
                 // "created_by" => $this->session->userdata('username'),
-                "created_by" => 'system',
+                'created_by'    => 'system',
+                'photo'         => 'default.jpg',
             ]
         ];
 
@@ -169,7 +209,7 @@ class UserGroup extends BaseController
         $id         = $this->request->getPost("id");
 
         $param = [
-            'table' => 'set_group',
+            'table' => 'set_user',
             'data' => [
                 "deleted_at" => date('Y-m-d H:i:s'),
                 // "deleted_by" => $this->session->userdata('username'),
@@ -193,6 +233,27 @@ class UserGroup extends BaseController
                 'message' => 'Gagal Hapus Data'
             ];
         }
+
+        echo json_encode($return);
+        return;
+    }
+
+    public function list_group_js()
+    {
+        $param = [
+            'table' => 'set_group',
+            'where' => [
+                'deleted_at' => NULL
+            ]
+        ];
+
+        $results = $this->m_user->select_with_param($param);
+
+        $return = [
+            'status'  => TRUE,
+            'message' => 'Berhasil ambil data group',
+            'data'    => $results
+        ];
 
         echo json_encode($return);
         return;
