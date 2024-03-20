@@ -32,11 +32,11 @@
     <script src="<?= base_url() ?>assets/vendor/js/helpers.js"></script>
     <script src="<?= base_url() ?>assets/js/config.js"></script>
 
-    <!-- <style>
+    <style>
         .swal2-container {
             z-index: 20000 !important;
         }
-    </style> -->
+    </style>
 </head>
 
 <body>

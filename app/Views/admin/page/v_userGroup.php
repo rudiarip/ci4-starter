@@ -1,5 +1,5 @@
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-semibold py-3 mb-4"><span class="text-muted fw-light"><?= $judul ?> /</span> <?= $subjudul ?></h4>
+    <!-- <h4 class="fw-semibold py-3 mb-4"><span class="text-muted fw-light"><= $judul ?> /</span> <= $subjudul ?></h4> -->
     <div class="card mb-4">
         <h5 class="card-header"></span> <?= $subjudul ?></h5>
         <div class="card-body">
@@ -7,20 +7,17 @@
                 <i class="fas fa-plus-circle"></i> Tambah Data
             </button>
             <div class="table-responsive text-nowrap">
-                <table id="user" class="table">
+                <table id="userGroup" class="table">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Aksi</th>
                             <th>Nama</th>
-                            <th>Email</th>
-                            <th>Level</th>
-                            <th>Status</th>
-                            <th>Terakhir Login</th>
+                            <th>Keterangan</th>
+                            <th>Dibuat</th>
+                            <th>Opsi</th>
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-
                     </tbody>
                 </table>
             </div>

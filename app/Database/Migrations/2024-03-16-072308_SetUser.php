@@ -32,7 +32,6 @@ class SetUser extends Migration
             ),
         );
 
-        // $this->load->dbforge();
         $this->forge->addColumn('set_user', $fields);
     }
 
