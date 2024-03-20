@@ -58,12 +58,32 @@
                 <div class="modal-body">
                     <input type="hidden" id="kodedit" name="kodedit">
                     <div class="form-group mb-3">
-                        <label for="enama">Nama Group</label>
-                        <input type="text" class="form-control" id="enama" name="enama" required>
+                        <label for="eusername">Username</label>
+                        <input type="text" class="form-control" id="eusername" name="eusername" placeholder="Masukkan Username" required>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="eketerangan">Keterangan</label>
-                        <textarea class="form-control" name="eketerangan" id="eketerangan" cols="" rows="3" required></textarea>
+                        <label for="eemail">Email</label>
+                        <input type="email" class="form-control" id="eemail" name="eemail" placeholder="Masukkan Email" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="epassword1">Password</label>
+                        <input type="password" class="form-control" id="epassword1" name="epassword1" placeholder="Masukkan Password" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="epassword2">Ulangi Password</label>
+                        <input type="password" class="form-control" id="epassword2" name="epassword2" placeholder="Ulangi Password" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="euser_group">Pilih Group</label>
+                        <select id="euser_group" name="euser_group" class="form-control user-group">
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="estatus" class="form-label">Status</label>
+                        <select name="estatus" id="estatus" class="form-control" required>
+                            <option value="1" selected>Aktif</option>
+                            <option value="0">Non-Aktif</option>
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -84,7 +104,7 @@
         $(".user-group").select2({
             theme: 'bootstrap4',
             placeholder: "Pilih",
-            dropdownParent: $("#modal-add"),
+            dropdownParent: $(".modal"),
             allowClear: true
         });
 
@@ -167,10 +187,13 @@
                     if (response.status) {
                         let data = response.data
 
-                        $('#modal-edit').modal('show');
                         $('[name="kodedit"]').val(data.id);
-                        $('[name="enama"]').val(data.nama);
-                        $('[name="eketerangan"]').val(data.keterangan);
+                        $('[name="eusername"]').val(data.username);
+                        $('[name="eemail"]').val(data.email);
+                        $('[name="euser_group"]').val(data.id_group);
+                        $('[name="estatus"]').val(data.status);
+
+                        $('#modal-edit').modal('show');
                     } else {
                         toastr.error(response.message);
                     }

@@ -142,7 +142,7 @@ class User extends BaseController
         $id = $this->request->getPost("id");
 
         $param = [
-            'table' => 'set_group',
+            'table' => 'set_user',
             'where' => [
                 'id' => $id
             ]
