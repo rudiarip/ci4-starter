@@ -32,14 +32,14 @@ class SetUser extends Migration
             ),
         );
 
-        $this->load->dbforge();
-        $this->dbforge->add_column('set_user', $fields);
+        // $this->load->dbforge();
+        $this->forge->addColumn('set_user', $fields);
     }
 
     public function down()
     {
-        $this->dbforge->drop_column('set_user', 'last_login');
-        $this->dbforge->drop_column('set_user', 'photo');
-        $this->dbforge->drop_column('set_user', 'status');
+        $this->forge->dropColumn('set_user', 'last_login');
+        $this->forge->dropColumn('set_user', 'photo');
+        $this->forge->dropColumn('set_user', 'status');
     }
 }
