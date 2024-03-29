@@ -16,10 +16,10 @@ class Module extends BaseController
     public function index()
     {
         $data = [
-            'judul'     => 'Setting',
-            'subjudul'  => 'User Group',
-            'isi'       => 'admin/page/v_userGroup',
-            'script'    => 'admin/script/script_userGroup'
+            'judul'     => 'Module',
+            'subjudul'  => 'Module',
+            'isi'       => 'admin/page/v_module',
+            'script'    => 'admin/script/script_module'
         ];
 
         return view('admin/layout/wrapper', $data);
@@ -32,9 +32,9 @@ class Module extends BaseController
         $length = intval($this->request->getPost("length"));
         $search = $this->request->getPost('search');
 
-        $result                 = $this->m_user->results($length, $start, $search);
-        $totalRecords           = $this->m_user->count_all();
-        $totalRecordsWithFilter = $this->m_user->total_record_with_filter($search);
+        $result                 = $this->module->results($length, $start, $search);
+        $totalRecords           = $this->module->count_all();
+        $totalRecordsWithFilter = $this->module->total_record_with_filter($search);
 
         $aksi        = '';
         $data        = [];
@@ -79,7 +79,7 @@ class Module extends BaseController
             ]
         ];
 
-        $insert = $this->m_user->insert_with_param($param);
+        $insert = $this->module->insert_with_param($param);
 
         if ($insert) {
             $return = [
@@ -108,7 +108,7 @@ class Module extends BaseController
             ]
         ];
 
-        $result = $this->m_user->select_with_param_row($param);
+        $result = $this->module->select_with_param_row($param);
 
         if ($result) {
             $return = [
@@ -146,7 +146,7 @@ class Module extends BaseController
             ]
         ];
 
-        $update = $this->m_user->update_with_param($param);
+        $update = $this->module->update_with_param($param);
 
         if ($update > 0) {
             $return = [
@@ -180,7 +180,7 @@ class Module extends BaseController
             ]
         ];
 
-        $destroy = $this->m_user->update_with_param($param);
+        $destroy = $this->module->update_with_param($param);
 
         if ($destroy > 0) {
             $return = [
