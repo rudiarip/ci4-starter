@@ -101,37 +101,19 @@
         tampildata();
         fetchGroup();
 
-        // $(".user-group").select2({
-        // theme: 'bootstrap4',
-        // placeholder: "Pilih",
-        // dropdownParent: $(".modal"),
-        // allowClear: true
-        // });
-
-        $('.modal').on('shown.bs.modal', function() {
-            $(".user-group").select2({
-                dropdownParent: $('.modal'),
-                placeholder: "Pilih",
-                allowClear: true
-            });
+        $("#user_group").select2({
+            theme: 'bootstrap4',
+            placeholder: "Pilih",
+            dropdownParent: $("#modal-add"),
+            allowClear: true
         });
 
-        // $('#modal-add').on('shown.bs.modal', function() {
-        //     $('.user-group').select2();
-        // $('.user-group').select2({
-        // theme: 'bootstrap4',
-        // placeholder: "Pilih",
-        // dropdownParent: $(".modal"),
-        // allowClear: true
-        // });
-        // });
-
-        // $(".edit-user-group").select2({
-        //     theme: 'bootstrap4',
-        //     placeholder: "Pilih",
-        //     dropdownParent: $("#modal-edit"),
-        //     allowClear: true
-        // });
+        $("#euser_group").select2({
+            theme: 'bootstrap4',
+            placeholder: "Pilih",
+            dropdownParent: $("#modal-edit"),
+            allowClear: true
+        });
 
         function tampildata() {
             $('#user').DataTable({
